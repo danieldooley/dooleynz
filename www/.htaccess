@@ -1,0 +1,11 @@
+<Files *.PDF>
+    Order Allow, Deny
+    Allow from all
+</Files>
+
+
+<Files *>
+    Order Deny,Allow
+    Deny from all
+    Allow from localhost
+</Files>

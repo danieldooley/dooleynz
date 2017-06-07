@@ -1,0 +1,96 @@
+html, body, .view {
+    height: 100vh;
+    max-height: 100%;
+}
+
+
+.view {
+    background-size: cover;
+}
+
+#login {
+    background: url("../img/morning.jpg") no-repeat center center fixed;
+    color: whitesmoke;
+}
+
+#loading {
+    background-color: #323232;
+    color: whitesmoke;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+.user {
+
+}
+
+.user img {
+    height: 40px;
+}
+
+.max {
+    max-height: 100%;
+}
+
+label {
+    width: 100%;
+}
+
+.sub-img {
+    max-width: 30%;
+}
+
+.sub-text {
+    text-align: right;
+}
+
+.img-label {
+    font-size: small;
+    text-align: center;
+}
+
+.scrolling-container {
+    max-height: calc(100% - 40px);
+    overflow-y: auto;
+    padding-bottom: 15px;
+}
+
+#subs {
+    height: calc(100vh - 110px);
+}
+
+nav ul {
+    margin: 0;
+}
+
+#mid {
+    height: calc(100vh - 297px);
+}
+
+#ytblock {
+    height: calc(100vh - 158px);
+}
+
+#subinc {
+    max-height: calc(100vh - 397px);
+    overflow-y: auto;
+}
+
+.click {
+    cursor: pointer;
+}
+
+#morning button {
+    width: 33%;
+}
+
+#YT {
+    width: 100%;
+    height: 100%;
+}
+
+.unclickable {
+    pointer-events: none;
+}

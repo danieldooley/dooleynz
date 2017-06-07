@@ -1,0 +1,117 @@
+div {
+    width: 100%
+}
+
+table {
+    margin: auto;
+}
+
+td {
+    font-size: 600%;
+    text-align: center;
+    width: 90px;
+    color: aliceblue;
+    background-color: darkslategray;
+    border-collapse: separate;
+    border-radius: 20px;
+}
+
+body {
+    padding-top: 50px;
+    width: 1000px;
+    margin: auto;
+    background-color: aliceblue;
+}
+
+p {
+    font-size: 200%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#definition {
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.letters table tr td {
+    width: 45px;
+    font-size: 250%;
+    border-radius: 10px
+}
+
+.letters {
+     margin-top: 50px;
+}
+
+#play {
+    background-color: darkslategray;
+    color: aliceblue;
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#clear {
+    background-color: darkslategray;
+    color: aliceblue;
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#reset {
+    background-color: darkslategray;
+    color: aliceblue;
+    width: 250px;
+    text-align: center;
+    margin: auto;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+html {
+    text-transform: uppercase;
+}
+
+p {
+    text-transform: none;
+}
+
+.selection {
+    background-color: slategray;
+}
+
+.used {
+    background-color: slategray;
+    text-decoration: line-through;
+}
+
+.win {
+    background-color: green;
+}
+
+.lose {
+    background-color: red;
+}
+
+#keys {
+    color: grey;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    font-size: medium;
+}
+
+.hide {
+    display: none;
+}
+
+.click {
+    cursor: pointer;
+}

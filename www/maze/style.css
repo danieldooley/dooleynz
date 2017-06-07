@@ -1,0 +1,58 @@
+body {
+    margin: auto;
+}
+
+#content {
+    margin: auto;
+    padding-top: 20px;
+    width: 1100px;
+}
+
+#settings {
+    float: left;
+    height: 100%;
+    line-height: 150%;
+}
+
+#canvas {
+    width: 800px;
+    margin: auto;
+    float: right;
+}
+
+canvas {
+    padding-top: 3px;
+}
+
+.hidden {
+    display: none;
+}
+
+fieldset {
+    border: none;
+    background-color: lightsteelblue;
+    border-radius: 20px;
+    display: table;
+}
+
+p {
+    display: table-row;
+}
+
+input, select {
+    display: table-cell;
+    width: 100%;
+}
+
+label {
+    display: table-cell;
+    text-align: right;
+    padding-right: 3px;
+}
+
+legend {
+    background-color: darkslategray;
+    color: white;
+    padding: 2px;
+    border-radius: 10px;
+}

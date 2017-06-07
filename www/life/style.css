@@ -1,0 +1,25 @@
+body {
+    width: 800px;
+    margin: auto;
+    padding-top: 10px;
+}
+
+tr {
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 600px;
+}
+
+td {
+    border: solid 1px;
+    border-color: black;
+    width: auto;
+}
+
+#buttons {
+    text-align: center;
+}

@@ -1,0 +1,109 @@
+.img-break {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+.img1 {
+    background-size: cover;
+}
+
+.img2 {
+    background-size: cover;
+}
+
+@media screen and (max-device-width: 1040px){
+    .img1 {
+        background-attachment: scroll;
+    }
+
+    .img2 {
+        background-attachment: scroll;
+    }
+}
+
+.img-break h1 {
+    /*background-color: rgba(55, 55, 55, 0.8);
+    border-radius: 10px;
+    margin: auto;
+    padding-bottom: 5px;
+    */
+
+    text-shadow:
+    -1px -1px 0 #FFF,
+    1px -1px 0 #FFF,
+    -1px 1px 0 #FFF,
+    1px 1px 0 #FFF;
+}
+
+.profile-img {
+    border-radius: 150px;
+    border: solid;
+    border-width: 4px;
+    color: white;
+}
+
+h2 {
+    line-height: 0.7;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+.padded {
+    padding: 20px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+textarea {
+    resize: none;
+}
+
+@media(min-width:550px){
+    h1 {
+        font-size: 72px;
+    }
+    h2 {
+        font-size: 42px;
+    }
+}
+
+
+@media(min-width: 992px){
+    .portimage {
+        width: 100%;
+        height: auto;
+    }
+}
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -51px;
+    visibility: hidden;
+}
+
+.entrydate {
+    text-align: right;
+}
+
+.entry {
+    margin-top: 20px;
+}
+
+.filter {
+    margin-top: 25px;
+}
+
+#details {
+    font-size: large;
+}
+
+.portimg {
+    margin-bottom: 5px;
+}

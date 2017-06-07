@@ -1,0 +1,17 @@
+@TODO
+Explosion effect.
+Star sparkles?
+
+ALL sounds /facepalm
+
+Better menu shizzles
+
+Polish (the action, not the nationality)
+
+
+--Credit--
+Art Resources - Kenney - http://open.commonly.cc/ - Creative Commons 0
+- TimelineFX
+Font - Agent Orange - Kacob Fischer - www.pizzadude.dk
+Phaser
+Sounds - http://dustyroom.com/casual-game-sfx-freebie/

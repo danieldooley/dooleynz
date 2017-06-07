@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/phaser.js"></script>
+    <script type="text/javascript" src="js/maze.js"></script>
+    <script type="text/javascript" src="js/generator.js"></script>
+</head>
+<body>
+    <div id="content">
+    <div id="settings">
+        <fieldset>
+            <legend>Maze Settings</legend>
+            <p><label>Width (Cells):</label><input type="number" id="xsize" min="1" max="100" value="8"></p>
+            <p><label>Height (Cells):</label><input type="number" id="ysize" min="1" max="100" value="6"></p>
+            <p><label>Start X:</label><input type="number" id="xstart" min="1" max="100" value="1"></p>
+            <p><label>Start Y:</label><input type="number" id="ystart" min="1" max="100" value="1"></p>
+            <p><label>Algorithm: </label><select id="algorithm">
+                <option value="RB" selected>Recursive Backtracking</option>
+            </select></p>
+            <p class="RB option"><label>Directions:</label><select id="shuffle">
+                <option value="randShuffle" selected>Random Shuffle</option>
+                <option value="horizBiasShuffle">Horizontal Bias</option>
+                <option value="extraHorizBiasShuffle">Horizontal Bias+</option>
+                <option value="vertBiasShuffle">Vertical Bias</option>
+                <option value="extraVertBiasShuffle">Vertical Bias+</option>
+                <option value="noShuffle">Linear</option>
+                <option value="revShuffle">Reverse Linear</option>
+            </select></p>
+            <button id="gen">Generate</button>
+        </fieldset>
+    </div>
+    <div id="canvas"></div>
+    </div>
+</body>
+</html>

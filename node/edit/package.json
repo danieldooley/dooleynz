@@ -1,0 +1,21 @@
+{
+  "name": "edit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "edit.js",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "fs": "^0.0.2",
+    "https": "^1.0.0",
+    "jsonfile": "^2.2.3",
+    "kbpgp": "^2.0.50",
+    "openpgp": "^1.5.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

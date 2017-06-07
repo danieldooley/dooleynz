@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="GoodMorningYT">
+<head>
+    <meta charset="UTF-8">
+    <title>GoodMorningYT</title>
+    <link rel="icon" href="img/logo.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/mdb.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-controller="gmytController as gmyt">
+
+<div id="loading" class="view" ng-if="gmyt.loading">
+    <div class="full-bg-img flex-center animated fadeIn">
+        <ul>
+            <li>
+                <h1>&nbsp&nbsp&nbspWaking Up... &nbsp&nbsp&nbsp</h1>
+            </li>
+            <li>
+                <div class="progress">
+                    <div class="indeterminate" style="width: 100%"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="main" ng-show="gmyt.user && gmyt.loaded" class="view max">
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+
+            <!--Collapse content-->
+            <div class="collapse navbar-toggleable-xs" id="collapseEx2">
+                <!--Navbar Brand-->
+                <a class="navbar-brand" href="#">Good Morning YouTube</a>
+                <!--Links-->
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#myModal">About</a>
+                    </li>
+                </ul>
+                <div class="user pull-xs-right">
+                    <ul>
+                        <li class="nav navbar-nav">
+                            <a class="nav-link" href="logout">&nbsp&nbsp Logout &nbsp&nbsp</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="user pull-xs-right">
+                    <img ng-src="{{gmyt.user.google.picture}}" class="img-circle">
+                </div>
+                <div class="user pull-xs-right">
+                    <ul class="nav navbar-nav">
+                        <li class="navbar-brand">{{gmyt.user.name}}</li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <!--/.Collapse content-->
+
+
+        </div>
+
+    </nav>
+
+    <br>
+
+    <div class="container-fluid" ng-if="gmyt.user">
+        <div class="row">
+            <div class="col-xs-3">
+                <div id="subs" class="card">
+                    <div class="card-header">
+                        All Subscriptions
+                    </div>
+                    <div class="card-block scrolling-container" ng-init="gmyt.loadSubs()">
+                        <div class="card card-block" ng-if="!gmyt.subs">
+                            <div class="card-title">Loading Subscriptions...</div>
+                            <div class="progress">
+                                <div class="indeterminate" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="card card-block" ng-if="gmyt.subs" ng-repeat="sub in gmyt.subs | subSort">
+                            <div class="sub-img pull-xs-left">
+                                <img class="img-circle img-fluid" ng-src="{{sub.snippet.thumbnails.default.url}}">
+                            </div>
+                            <div class="sub-text pull-xs-right">
+                                <div class="card-title">{{sub.snippet.title}} <span ng-if="sub.selected" class="fa fa-check"></span></div>
+                                <a ng-if="!sub.selected" ng-click="gmyt.addSub(sub)" href="#" class="card-link">Add to Morning</a>
+                                <a ng-if="sub.selected" ng-click="gmyt.removeSub(sub)" href="#" class="card-link">Remove from Morning</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-9">
+                <div id="mid">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Player
+                                    </div>
+                                    <div id="ytblock" class="card-block" ng-class="{unclickable: gmyt.ytblock}">
+                                        <div id="YT">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Included Subscriptions
+                                    </div>
+                                    <div id="subinc" class="card-block">
+                                        <div class="card card-block" ng-repeat="sub in gmyt.user.morning.subs">
+                                            <span>{{sub.name}}<span class="pull-xs-right">
+                                                <span class="fa fa-arrow-up click" ng-click="gmyt.subup(sub)"></span>
+                                                &nbsp<span class="fa fa-arrow-down click" ng-click="gmyt.subdown(sub)"></span>
+                                                &nbsp<span class="fa fa-trash-o click" ng-click="gmyt.subtrash(sub)"></span></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="morning" class="card">
+                                    <div class="card-header">
+                                        Controls
+                                    </div>
+                                    <div class="card-block">
+                                        <div>
+                                            <label>Select Date: <input type="date" class="form-control" ng-model="gmyt.date"></label>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-sm btn-primary" ng-click="gmyt.play()">Play</button>
+                                            <button class="btn btn-sm btn-primary" ng-click="gmyt.save()">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">About</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <p>Good Morning YouTube is a tool to create YouTube playlists based on chosen subscribers for a specific date. Add Subscribers to your 'Morning'
+                    from the list on the left, choose the date that you want to generate the playlist for (in case you missed out on your YouTube fix for a previous date) and
+                    press play.</p>
+                    <p>Good Morning YouTube was created by Dan Dooley, a student studying towards a Masters of Computer Science
+                     at the University of Otago in Dunedin, New Zealand. If you encounter any bugs, have some feature requests, or just want to get in touch with me
+                    please use one of the following: </p>
+                    <ul>
+                        <li>Email: <a href="mailto:dan@dooley.ac.nz">dan@dooley.ac.nz</a></li>
+                        <li>Website: <a href="http://dooley.ac.nz">http://dooley.ac.nz</a></li>
+                    </ul>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+</div>
+
+<div id="login" ng-show="!gmyt.user && gmyt.loaded" class="view">
+    <div class="full-bg-img flex-center animated fadeIn">
+        <ul>
+            <li>
+                <h1 class="h1-responsive">Good Morning YouTube!</h1>
+            </li>
+            <li>
+                <p>Welcome to Good Morning YouTube. To begin please login with your google account.</p>
+            </li>
+            <li>
+                <button class="btn btn-gplus" ng-click="gmyt.login()">Google Login</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- AngularJS -->
+<script type="application/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+
+<!-- MomentJS -->
+<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment-with-locales.min.js"></script>
+
+<!-- JQuery -->
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/tether.min.js"></script>
+
+<!-- Bootstrap core-->
+<script type="text/javascript" src="js/bootstrap.js"></script>
+
+<!-- MDB core-->
+<script type="text/javascript" src="js/mdb.min.js"></script>
+
+
+<!-- GoodMorningYT -->
+<script type="application/javascript" src="js/ytapp.js"></script>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+</body>
+</html>

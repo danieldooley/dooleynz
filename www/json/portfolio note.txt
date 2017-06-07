@@ -1,0 +1,24 @@
+ /*
+        portfolioItems is a list of the entries in the porfolio
+        section of the site. Adding a new item is as simple as
+        adding a new entry to the list. AngularJS will automatically
+        display the item once the page is refreshed.
+
+        ***** WARNING *****
+        Objects need to be in order of category
+        otherwise the drop-down menu will not
+        generate correctly.
+
+        The template is as follows:
+
+        {
+             name: '',
+             title: '',
+             subtitle: '',
+             link: '',
+             image: '',
+             btnText: '',
+             category: '',
+             text: ''
+        }
+     */

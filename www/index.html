@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="portfolio">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Landing page for Dan Dooley's Personal Site">
+    <meta name="author" content="Dan Dooley">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Dan Dooley</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/navbar-fixed-top.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jspdf.debug.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-sanitize.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/controllers.js"></script>
+
+</head>
+
+<body ng-controller="bgController as bg">
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Dan Dooley</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li id="ntop" class="active main"><a class="dd" href="#">Top</a></li>
+                <li id="nresume" class="main"><a class="dd" href="#resume">Resume</a></li>
+                <li id="ncontact" class="main"><a class="dd" href="#contact">Contact</a></li>
+                <li id="nportfolio" class="dropdown main">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Portfolio<span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="navfill">
+                        <!-- Automatically Filled -->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<a id="top" class="anchor"></a>
+
+<div class="img-break img1 section" ng-style="bg.img1">
+    <div class="padded container">
+        <div class="row">
+
+            <div class="col-sm-3">
+
+            </div>
+            <div class="col-sm-6">
+                <img class="center-block profile-img" src="img/dan.jpg" height="300" width="300">
+            </div>
+            <div class="col-sm-3">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /container -->
+
+<a id="resume" class="anchor"></a>
+
+<div class="container section" ng-controller="CVController as cv">
+    <div class="row">
+        <div class="col-sm-4">
+            <h1>Resume</h1>
+        </div>
+        <div class="col-sm-3"></div>
+        <div class="col-sm-5 filter form-inline">
+            <label for="cvShow" class="control-label">Filter</label>
+            <select id="cvShow" name="show" class="form-control input-lg" ng-model="cv.show">
+                <option selected value="brief">Brief Resume</option>
+                <option value="tech">Technology Relevant</option>
+                <option value="all">Full Resume</option>
+            </select>
+            <button class="btn btn-lg btn-default" ng-click="cv.generatePDF()">Generate PDF</button>
+        </div>
+    </div>
+    <hr>
+    <div id="details">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-xs-4 text-right">
+                        <p><strong>Email:</strong></p>
+
+                        <p><strong>Website:</strong></p>
+
+                        <p><strong>Phone:</strong></p>
+                    </div>
+                    <div class="col-xs-8 text-left">
+                        <p>{{cv.resume.details.email}}</p>
+
+                        <p>{{cv.resume.details.website}}</p>
+
+                        <p>{{cv.resume.details.phone}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-xs-4 text-right">
+                        <p><strong>Address:</strong></p>
+                    </div>
+                    <div class="col-xs-8 text-left">
+                        <p>{{cv.resume.details.address1}}<br>
+                            {{cv.resume.details.address2}}<br>
+                            {{cv.resume.details.address3}}<br>
+                            {{cv.resume.details.postcode}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div id="contents">
+        <div class="row">
+            <div id="experience" class="col-md-6">
+                <h2>Work Experience</h2>
+
+                <div class="entry" ng-repeat="job in cv.resume.experience">
+                    <div class="row" ng-show="job.tags.indexOf(cv.show) !== -1 || cv.show === 'all'">
+                        <div class="jobtitle col-sm-9">
+                            <h3>{{job.title}}<br>
+                                <small>{{job.info}}</small>
+                            </h3>
+                        </div>
+                        <div class="entrydate col-sm-3">
+                            <p><strong>{{job.start}} - {{job.end}}</strong></p>
+                        </div>
+
+                    </div>
+                    <ul ng-repeat="task in job.details" ng-show="job.tags.indexOf(cv.show) !== -1 || cv.show === 'all'">
+                        <li>{{task.description}}</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="visible-xs visible-sm">
+            <div id="education" class="col-md-6">
+                <h2>Education</h2>
+
+                <div class="entry" ng-repeat="entry in cv.resume.education">
+                    <div class="row" ng-show="entry.tags.indexOf(cv.show) !== -1 || cv.show === 'all'">
+                        <div class="entrytitle col-sm-9">
+                            <h3>{{entry.title}}<br>
+                                <small>{{entry.location}}</small>
+                            </h3>
+                        </div>
+                        <div class="entrydate col-sm-3">
+                            <p><strong>{{entry.start}} - {{entry.end}}</strong></p>
+                        </div>
+
+                    </div>
+                    <ul ng-repeat="item in entry.details"
+                        ng-show="entry.tags.indexOf(cv.show) !== -1 || cv.show === 'all'">
+                        <li>{{item.description}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h4>For privacy reasons, references are available on request. Use the details above, or the form below.</h4>
+        <br>
+    </div>
+</div>
+
+<a id="contact" class="anchor"></a>
+
+<div class="img-break img2 section" ng-style="bg.img2">
+    <div class="container padded">
+        <h1 class="text-center">Contact</h1>
+
+        <div class="col-md-3">
+        </div>
+            <div class="col-md-6" ng-controller="MailController as mail">
+                <form id="contactForm" name="contactForm" novalidate>
+                <input type="email" id="contactAddress" name="sender" class="form-control input-lg"
+                       ng-model="mail.sender" placeholder="Your Email Address" required>
+                <hr>
+                <select id="contactSubject" name="subject" class="form-control input-lg" placeholder="subject"
+                        ng-model="mail.subject">
+                    <option selected value="General Inquiry">General Inquiry</option>
+                    <option value="Portfolio Content">Portfolio Content</option>
+                    <option value="Reference Request">Reference Request</option>
+                </select>
+                <hr>
+                <textarea name="body" class="form-control input-lg" placeholder="Message Body - Submit button appears once email and message are entered." rows="10"
+                          ng-model="mail.body" required></textarea>
+                <hr ng-hide="contactForm.$invalid">
+                <button ng-hide="contactForm.$invalid" type="submit" ng-disabled="contactForm.$invalid" ng-click="mail.send()" class="btn-primary btn-lg btn-block">Submit</button>
+
+                <div class="col-md-3" >
+
+                </div>
+                </form>
+            </div>
+    </div>
+</div>
+
+<a id="portfolio" class="anchor"></a>
+
+<div class="container section">
+    <h1>Portfolio</h1>
+
+    <div ng-controller="PortfolioController as port">
+        <nav>
+            <ul id="portpill" class="nav nav-pills ">
+                <li ng-repeat="item in port.items" ng-class="{'active':$first}">
+                    <a id="pill{{item.name}}" href="#{{item.name}}" data-toggle="pill">{{item.title}}</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container tab-content">
+            <div id="{{item.name}}" class="container tab-pane fade" ng-class="{'in active':$first}"
+                 ng-repeat="item in port.items">
+                <h2>{{item.title}}<br>
+                    <small>{{item.subtitle}}</small>
+                </h2>
+                <div class="row">
+                    <div class="col-md-7 col-md-push-5 center-block">
+                        <img ng-src="{{item.image}}" class="portimg img-responsive center-block portimage">
+                        <hr class="visible-xs visible-sm">
+                    </div>
+                    <div class="col-md-5 col-md-pull-7">
+                        <p>
+                            {{item.text}}
+                        </p>
+                        <hr>
+                        <div ng-show="item.btnText">
+
+                            <a href="{{item.link}}">
+                                <button type="button" class="btn btn-primary btn-lg btn-block">{{item.btnText}}</button>
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
